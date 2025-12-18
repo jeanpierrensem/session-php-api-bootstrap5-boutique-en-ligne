@@ -8,8 +8,8 @@ $_SESSION["panier"] = isset($_SESSION["panier"]) ? $_SESSION["panier"] : [];
 // TODO 3: Calculer le nombre total d'articles dans le panier
 // Indice : Le panier est un tableau d'articles, chaque article a une 'quantite'
 // Utilisez array_column() pour extraire toutes les quantités, puis array_sum()
-$quantite = array_column($_SESSION['panier'], "quantite");
-$nombre_articles = array_sum($quantite);
+//$quantite = array_column($_SESSION['panier'], "quantite");
+//$nombre_articles = array_sum($quantite);
 
 ?>
 
@@ -38,7 +38,7 @@ $nombre_articles = array_sum($quantite);
             -->
             <!--  - Un lien "Ma Boutique" vers index.php (classe navbar-brand)-->
             <!-- Logo/Nom du site -->
-            <a class="navbar-brand cart-fill" href="../index.php"><i class="bi bi-shop-window"></i></a>
+            <a class="navbar-brand cart-fill" href="../tp-sessions/index.php"><i class="bi bi-shop-window"></i></a>
             <!-- Reste de la navbar -->
             <!--   - Un bouton toggler pour mobile-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
@@ -64,22 +64,3 @@ $nombre_articles = array_sum($quantite);
 </body>
 
 </html>
-
-<pre>
-
-<?php
-print_r($_SESSION['panier']);
-?>
-</pre>
-
-<pre>
-
-<?php
-print_r($nombre_articles);
-?>
-</pre>
-
-<?php
-print_r($quantite);
-?>
-</pre>

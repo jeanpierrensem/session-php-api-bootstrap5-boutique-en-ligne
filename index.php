@@ -1,20 +1,16 @@
 <?php
-
 session_start();
 // TODO 1: Inclure le fichier header.php
-include_once "../includes/header.php";
-
-
+require_once "includes/header.php";
 // TODO 2: Récupérer les produits depuis l'API
 // URL de l'API : https://dummyjson.com/products?limit=30
 // Indices : 
 // - Utilisez file_get_contents() pour récupérer le JSON
-$url = isset($url) ? $url : "https://dummyjson.com/products?limit=30";
+$url = isset($url) ? $url : "https://dummyjson.com/products?limit=100";
 $json = file_get_contents($url);
 // - Utilisez json_decode() avec true comme 2e paramètre pour obtenir un tableau
 $data = json_decode($json, true);
 // - Les produits sont dans $data['products']
-
 $produits = $data["products"];
 ?>
 
@@ -31,7 +27,7 @@ $produits = $data["products"];
 
 <body>
     <div class="container my-4">
-        <h1 class="mb-4">Nos Produits</h1>
+        <h4 class="mb-4">Liste des Produits</h4>
 
         <div class="row">
             <!-- TODO 3: Boucler sur les produits avec foreach -->
@@ -64,8 +60,29 @@ $produits = $data["products"];
                             <div class="d-flex justify-content-between align-items-center">
                                 <h4 class="text-primary mb-0">$<?= $produit['price'] ?></h4>
                             </div>
-                            <button class="btn btn-primary w-100 mt-3">Ajouter au panier</button>
+
+
+
+
                         </div>
+                        <!-- TODO 4: Dans chaque carte, ajouter un formulaire pour l'ajout au panier -->
+                        <!-- Le formulaire doit :
+                                - Utiliser method="POST" et action="actions/ajouter_panier.php"
+                                - Contenir des champs hidden pour : id, title, price, thumbnail
+                                - Avoir un bouton submit avec :
+                                * Classe : btn btn-primary
+                                * Icône : bi-cart-plus
+                                * Texte : "Ajouter"     
+                            Structure suggérée pour le bas de la carte :  -->
+                        <form action="actions/ajouter_panier.php" method="post" class="mt-3">
+                            <input type="hidden" name="id" value="<?php echo $produit['id'] ?>">
+                            <input type="hidden" name="title" value="<?php echo $produit['title'] ?>">
+                            <input type="hidden" name="price" value="<?php echo $produit['price'] ?>">
+                            <input type="hidden" name="thumbnail" value="<?php echo $produit['thumbnail'] ?>">
+                            <button class="btn btn-primary w-100 mt-3 bi-cart-plus">Ajouter</button>
+                        </form>
+
+
                     </div>
 
 
@@ -74,21 +91,7 @@ $produits = $data["products"];
 
 
 
-            <!-- TODO 4: Dans chaque carte, ajouter un formulaire pour l'ajout au panier -->
-            <!-- Le formulaire doit :
-             - Utiliser method="POST" et action="actions/ajouter_panier.php"
-             - Contenir des champs hidden pour : id, title, price, thumbnail
-             - Avoir un bouton submit avec :
-               * Classe : btn btn-primary
-               * Icône : bi-cart-plus
-               * Texte : "Ajouter"
-             
-             Structure suggérée pour le bas de la carte :
-             <div class="d-flex justify-content-between align-items-center mt-auto">
-                 <span class="h5 mb-0">[PRIX] €</span>
-                 <form>...</form>
-             </div>
-        -->
+
         </div>
     </div>
 
