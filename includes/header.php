@@ -29,7 +29,7 @@ $nombre_articles = array_sum($quantite);
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <!-- TODO 4: Créer la structure de navigation Bootstrap -->
 
@@ -38,7 +38,7 @@ $nombre_articles = array_sum($quantite);
             -->
             <!--  - Un lien "Ma Boutique" vers index.php (classe navbar-brand)-->
             <!-- Logo/Nom du site -->
-            <a class="navbar-brand" href="../index.php">Ma Boutique</a>
+            <a class="navbar-brand cart-fill" href="../index.php"><i class="bi bi-shop-window"></i></a>
             <!-- Reste de la navbar -->
             <!--   - Un bouton toggler pour mobile-->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse">
