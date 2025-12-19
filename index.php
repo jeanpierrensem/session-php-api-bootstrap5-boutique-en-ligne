@@ -53,7 +53,7 @@ $index = 0;
                         * Classe : card-img-top
                         * Style : height: 200px; object-fit: cover;-->
 
-                        <img src="<?= $produit['thumbnail'] ?>" class="card-img-top"
+                        <img src="<?= htmlspecialchars($produit['thumbnail']) ?>" class="card-img-top"
                             style="height: 200px; object-fit: cover;" />
                         <!--   - Le corps de la carte avec :
                    * Le titre (dans un h5 avec classe card-title)
@@ -61,16 +61,16 @@ $index = 0;
                    * En bas : prix et bouton d'ajout 
             -->
                         <div class="card-body">
-                            <h5 class="card-title"> <?= $produit['title'] ?></h5>
+                            <h5 class="card-title"> <?= htmlspecialchars($produit['title']) ?></h5>
                             <p class="card-text">
-                                <?= $produit["description"] ?>
+                                <?= htmlspecialchars($produit["description"]) ?>
                             </p>
 
                         </div>
 
                         <div class="card-footer bg-transparent">
                             <div class="d-flex justify-content-between align-items-center">
-                                <h4 class="text-primary mb-0">$<?= $produit['price'] ?></h4>
+                                <h4 class="text-primary mb-0">$<?= htmlspecialchars($produit['price']) ?></h4>
                             </div>
 
 
