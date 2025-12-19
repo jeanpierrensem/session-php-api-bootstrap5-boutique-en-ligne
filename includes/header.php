@@ -49,12 +49,12 @@ $_SESSION["panier"] = isset($_SESSION["panier"]) ? $_SESSION["panier"] : [];
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <!--   * "Produits" vers index.php-->
-                        <a class="nav-link active" href="../index.php">Produits</a>
+                        <a class="nav-link active" href="../tp-sessions/index.php">Produits</a>
                     </li>
                     <!--  - Une icône panier (classe bi-cart)-->
                     <li class="nav-item ">
                         <!--  * "Panier" vers panier.php avec :-->
-                        <a class="nav-link bi-cart" href="../panier.php">Panier</a>
+                        <a class="nav-link bi-cart" href="../tp-sessions/panier.php">Panier</a>
                     </li>
                 </ul>
             </div>

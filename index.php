@@ -6,12 +6,14 @@ require_once "includes/header.php";
 // URL de l'API : https://dummyjson.com/products?limit=30
 // Indices : 
 // - Utilisez file_get_contents() pour récupérer le JSON
-$url = isset($url) ? $url : "https://dummyjson.com/products?limit=100";
+$url = isset($url) ? $url : "https://dummyjson.com/products?limit=30";
 $json = file_get_contents($url);
 // - Utilisez json_decode() avec true comme 2e paramètre pour obtenir un tableau
 $data = json_decode($json, true);
 // - Les produits sont dans $data['products']
 $produits = $data["products"];
+
+$index = 0;
 ?>
 
 <!DOCTYPE html>
@@ -23,15 +25,25 @@ $produits = $data["products"];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
     <title>Produits</title>
+    <script>
+        //const myCarouselElement = document.querySelector('#carouId')
+
+        /*const carousel = new bootstrap.Carousel(myCarouselElement, {
+            interval: 2000,
+            touch: false
+        })*/
+    </script>
 </head>
 
 <body>
     <div class="container my-4">
         <h4 class="mb-4">Liste des Produits</h4>
 
+
+
         <div class="row">
             <!-- TODO 3: Boucler sur les produits avec foreach -->
-            <?php foreach ($produits as $produit) { ?>
+            <?php foreach ($produits as $key => $produit) { ?>
                 <!-- - Une colonne responsive (col-md-6 col-lg-4 mb-4)
              - Une carte avec classe "card h-100" pour hauteur égale -->
                 <div class="col-md-6 col-lg-4 mb-4">

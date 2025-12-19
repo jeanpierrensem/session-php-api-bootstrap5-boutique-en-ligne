@@ -18,13 +18,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Si le produit existe (même id), incrémenter sa quantité
     // Utilisez une variable $produit_existe pour savoir si on l'a trouvé
     $produit_existe = false;
-    foreach ($_SESSION["panier"] as &$produit) {
-        if ($produit["id"] == $id) {
+
+
+    // TODO: Parcourir le panier et chercher le produit
+    // IMPORTANT : Utilisez &$item dans le foreach pour modifier directement l'élément
+    // foreach ($_SESSION['panier'] as &$item) { ... }
+    foreach ($_SESSION["panier"] as &$item) {
+        if ($item["id"] == $id) {
             $produit_existe = true;
-            $produit["quantite"] += $quantite;
+            $item["quantite"] += $quantite;
             break;
         }
     }
+
+    // TODO 5: Si le produit n'existe pas, l'ajouter au panier
+    // Structure d'un article dans le panier :
+    // [
+    //     'id' => $id,
+    //     'title' => $title,
+    //     'price' => $price,
+    //     'thumbnail' => $thumbnail,
+    //     'quantite' => 1
+    // ]
 
     if (!$produit_existe) {
         $unProduit = [
@@ -37,49 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION["panier"][] = $unProduit;
 
     }
-
-    // TODO: Parcourir le panier et chercher le produit
-    // IMPORTANT : Utilisez &$item dans le foreach pour modifier directement l'élément
-    // foreach ($_SESSION['panier'] as &$item) { ... }
-
-    // TODO 5: Si le produit n'existe pas, l'ajouter au panier
-    // Structure d'un article dans le panier :
-    // [
-    //     'id' => $id,
-    //     'title' => $title,
-    //     'price' => $price,
-    //     'thumbnail' => $thumbnail,
-    //     'quantite' => 1
-    // ]
 }
 
 // TODO 6: Rediriger vers la page précédente
 // Indice : Utilisez header('Location: ' . $_SERVER['HTTP_REFERER']);
+header('Location: ' . $_SERVER['HTTP_REFERER']);
 // N'oubliez pas exit(); après la redirection
 
-?>
-
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
-
-
-
-</body>
-
-</html>
-
-
-<pre>
-  <?php
-  print_r($_SESSION["panier"]);
-
-  ?> 
-</pre>
