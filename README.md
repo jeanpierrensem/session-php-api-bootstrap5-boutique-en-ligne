@@ -1,4 +1,6 @@
-# cookies-serialize-unserialize-setcookie-php-ecommerce
+# Sessions PHP-Stockage-Superglobale-Bootstrap-Sécurité-E-commerce
+
+Création d'un Site E-commerce avec Panier
 <h3>Points clés   </h3>
 <ul>
 <li>Sessions PHP : Utilisez session_start() en début de chaque page </li>
@@ -8,10 +10,6 @@
 <li> Sécurité : Utilisez htmlspecialchars() pour éviter les injections XSS </li>
 </ul>
 
-à retenir
-
-
-Superglobale :
 
 
 <img src="captures/0.png" />
@@ -21,10 +19,3 @@ Superglobale :
 <img src="captures/2.png" />
 <hr/>
 <img src="captures/3.png" />
-
-<hr/>
-<img src="captures/4.png" />
-
-<hr/>
-<img src="captures/5.png" />
-
