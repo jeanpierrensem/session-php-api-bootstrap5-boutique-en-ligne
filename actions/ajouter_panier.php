@@ -1,18 +1,63 @@
 <?php
 
+// TODO 1: Démarrer la session
+session_start();
 
+// TODO 2: Vérifier que la requête est bien en POST
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // TODO 3: Récupérer les données du formulaire
+    // Variables nécessaires : $id, $title, $price, $thumbnail
+    $id = $_POST["id"] ?? null;
+    $title = $_POST["title"] ?? "";
+    $price = $_POST["price"] ?? 0;
+    $photo = $_POST["photo"] ?? "";
+    $quantite = $_POST['quantite'] ?? 1;
 
-if (!isset($_POST["id"])) {
-    exit;
+    // TODO 4: Vérifier si le produit existe déjà dans le panier
+    // Indice : Parcourir $_SESSION['panier'] avec foreach
+    // Si le produit existe (même id), incrémenter sa quantité
+    // Utilisez une variable $produit_existe pour savoir si on l'a trouvé
+    $produit_existe = false;
+    foreach ($_SESSION["panier"] as &$produit) {
+        if ($produit["id"] == $id) {
+            $produit_existe = true;
+            $produit["quantite"] += $quantite;
+            break;
+        }
+    }
+
+    if (!$produit_existe) {
+        $unProduit = [
+            'id' => $id,
+            'title' => $title,
+            'price' => $price,
+            'thumbnail' => $photo,
+            'quantite' => 1
+        ];
+        $_SESSION["panier"][] = $unProduit;
+
+    }
+
+    // TODO: Parcourir le panier et chercher le produit
+    // IMPORTANT : Utilisez &$item dans le foreach pour modifier directement l'élément
+    // foreach ($_SESSION['panier'] as &$item) { ... }
+
+    // TODO 5: Si le produit n'existe pas, l'ajouter au panier
+    // Structure d'un article dans le panier :
+    // [
+    //     'id' => $id,
+    //     'title' => $title,
+    //     'price' => $price,
+    //     'thumbnail' => $thumbnail,
+    //     'quantite' => 1
+    // ]
 }
-$id = $_POST["id"];
 
-$tite = isset($_POST["title"]) ? $_POST["title"] : "";
-$price = isset($_POST["price"]) ? $_POST["price"] : 0;
-$photo = isset($_POST["thumbnail"]) ? $_POST["thumbnail"] : "";
+// TODO 6: Rediriger vers la page précédente
+// Indice : Utilisez header('Location: ' . $_SERVER['HTTP_REFERER']);
+// N'oubliez pas exit(); après la redirection
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -27,10 +72,6 @@ $photo = isset($_POST["thumbnail"]) ? $_POST["thumbnail"] : "";
 
 
 
-    <!-- TODO 5: Inclure Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.min.js"
-        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-        crossorigin="anonymous"></script>
 </body>
 
 </html>
@@ -38,9 +79,7 @@ $photo = isset($_POST["thumbnail"]) ? $_POST["thumbnail"] : "";
 
 <pre>
   <?php
-  print_r("id " . $id);
-  print_r("price " . $price);
-  print_r("title " . $title);
-  print_r("photo" . $photo);
+  print_r($_SESSION["panier"]);
+
   ?> 
 </pre>
